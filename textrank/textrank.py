@@ -1,3 +1,9 @@
+# процент эффективности по каждой статье
+# средняя по рубрике - сделать график
+# результат - получение красивой поданой информации с выводами
+# показать разные сравнение (русский, английский)
+# автоопределение языка
+# практическое применение
 from itertools import combinations
 from nltk.tokenize import sent_tokenize, RegexpTokenizer
 from nltk.stem.snowball import RussianStemmer
@@ -11,9 +17,11 @@ def similarity(s1, s2):
 def textrank(text):
     sentences = sent_tokenize(text)
     print(sentences[0])
+    sentences = sentences[0]
     tokenizer = RegexpTokenizer(r'\w+')
     lmtzr = RussianStemmer()
-    words = [set(lmtzr.stem(word) for word in tokenizer.tokenize(sentence.lower()))
+    words = [set(lmtzr.stem(word) for word in tokenizer.tokenize(
+        sentence.lower  ()))
              for sentence in sentences]
 
     pairs = combinations(range(len(sentences)), 2)
@@ -33,9 +41,9 @@ def extract(text, n=5):
     return ' '.join(x[2] for x in top_n)
 
 
-f = open("../bbc/tennis/001.txt", 'r')
-text = f.read()
-f.close()
-
-result = extract(text)
-print(result)
+# f = open("./bbc/tennis/001.txt", 'r')
+# text = f.read()
+# f.close()
+#
+# result = extract(text)
+# print(result)
