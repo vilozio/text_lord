@@ -6,7 +6,7 @@
 # практическое применение
 from itertools import combinations
 from nltk.tokenize import sent_tokenize, RegexpTokenizer
-from nltk.stem.snowball import RussianStemmer
+from nltk.stem.snowball import RussianStemmer, EnglishStemmer
 import networkx as nx
 
 def similarity(s1, s2):
@@ -16,12 +16,17 @@ def similarity(s1, s2):
 
 def textrank(text):
     sentences = sent_tokenize(text)
-    print(sentences[0])
-    sentences = sentences[0]
+    for i, s in enumerate(sentences):
+        lines = s.splitlines()
+        [lines.pop(j) if len(l) < 1 else lines for j, l in enumerate(lines)]
+        sentences.pop(i)
+        sentences.extend(lines)
+
     tokenizer = RegexpTokenizer(r'\w+')
-    lmtzr = RussianStemmer()
+    # lmtzr = RussianStemmer()
+    lmtzr = EnglishStemmer()
     words = [set(lmtzr.stem(word) for word in tokenizer.tokenize(
-        sentence.lower  ()))
+        sentence.lower()))
              for sentence in sentences]
 
     pairs = combinations(range(len(sentences)), 2)

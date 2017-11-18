@@ -61,6 +61,8 @@ def parse_args():
                         help='input dir')
     parser.add_argument('-o', '--out', action=readable_dir,
                         help='output dir')
+    parser.add_argument('--tree', action='store_true',
+                        help='output as input dir tree')
     # parser.add_argument('path', help='where data')
     args = parser.parse_args()
     return args

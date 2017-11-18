@@ -1,12 +1,20 @@
 import handlers.bulk_text as btext
+import os
+from logging import getLogger
 
 
 class FileHandler:
+    logger = getLogger(__name__)
 
-    def __init__(self, level, source):
+    def __init__(self, source=None, target=None):
         self.source = source
+        self.target = target
 
-
-    def load_source(self):
-        # self.log.debug('Loading texts from path {}.'.format(self.source))
+    def load(self):
+        self.logger.debug('Loading texts from {}'.format(self.source))
         return btext.load(self.source)
+
+    def save(self, filename, text):
+        path = os.path.join(self.target, filename)
+        self.logger.debug('Saving text to {}'.format(path))
+        btext.save(path, text)

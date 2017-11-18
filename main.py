@@ -16,7 +16,7 @@ def main():
     source_handler = factory.get_source_handler(args)
     target_handler = factory.get_target_handler(args)
     method_handler = factory.get_method_handler(args)
-    process.run(source_handler, target_handler, method_handler)
+    process.run(source_handler, target_handler, method_handler, args)
 
 
 if __name__ == '__main__':

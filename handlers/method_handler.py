@@ -1,5 +1,7 @@
 import textrank
 
 
-def get_method():
-    return textrank
+class MethodHandler:
+
+    def get_method(self):
+        return textrank

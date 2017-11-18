@@ -17,4 +17,8 @@ def configLogging(args):
     conf = getattr(args, 'log.conf')
     if not conf:
         conf = 'logging.conf'
-    logging.config.dictConfig(yaml.load(open(conf, 'r')))
+    try:
+        with open(conf, 'r') as f:
+            logging.config.dictConfig(yaml.load(f))
+    except FileNotFoundError:
+        print('Logging config file not found')
