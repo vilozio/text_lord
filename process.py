@@ -9,17 +9,25 @@ def run(source_handler, target_handler, method_handler, args):
     target = target_handler.target
     for path, text in texts.items():
         logger.debug('Extracting summary for {0}'.format(path))
-        summary = method_handler.get_method().extract(text, 1)
+        summary = method_handler.extract(text, 1)
+        # break
         # logger.debug('Result summary for {0}: {1}'.format(path, summary))
         dirs, filename = os.path.split(path)
 
         if args.tree:
-            if target:
-                source = source_handler.source.replace('/', '')
-                new_target_dir = target + '_' + source
-                new_target = dirs.replace(source, new_target_dir, 1)
-                target_handler.target = new_target
+            if args.separate:
+                target_handler.target = target_relative_to_source(
+                    source_handler.source, 'target')
             else:
                 target_handler.target = dirs
                 filename = filename + '.tr'
         target_handler.save(filename, summary)
+
+
+def target_relative_to_source(original_source, target):
+    source = original_source
+    source = source[:-1] if source.endswith('/') else source
+    source_path, source_dir = os.path.split(source)
+    new_target_dir = target + '_' + source_dir
+    new_target = os.path.join(source_path, new_target_dir)
+    return new_target

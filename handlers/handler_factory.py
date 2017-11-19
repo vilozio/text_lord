@@ -22,4 +22,7 @@ def get_target_handler(args):
 
 
 def get_method_handler(args):
-    return mh.MethodHandler()
+    methods = []
+    if args.textrank:
+        methods.append('textrank')
+    return mh.MethodHandler(methods)

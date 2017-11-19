@@ -54,7 +54,8 @@ def parse_args():
         epilog="And that's how you'd rule a text"
     )
     parser.add_argument('--log.conf', action=readable_file,
-                        help='path to logging yaml config file')
+                        help='path to logging config file. YAML format is '
+                             'supported only')
     parser.add_argument('-t', '--textrank', action='store_true',
                         help='doing special')
     parser.add_argument('-i', '--input', action=readable_dir,
@@ -62,6 +63,8 @@ def parse_args():
     parser.add_argument('-o', '--out', action=readable_dir,
                         help='output dir')
     parser.add_argument('--tree', action='store_true',
+                        help='output as input dir tree')
+    parser.add_argument('--separate', action='store_true',
                         help='output as input dir tree')
     # parser.add_argument('path', help='where data')
     args = parser.parse_args()
