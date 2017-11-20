@@ -16,7 +16,7 @@ def manualConfigLogging(args):
 def configLogging(args):
     conf = getattr(args, 'log.conf')
     if not conf:
-        conf = 'logging.conf'
+        conf = 'etc/logging.conf'
         # conf = '/etc/text_lord.d/logging.conf'
     try:
         with open(conf, 'r') as f:

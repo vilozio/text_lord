@@ -1,5 +1,6 @@
-import textrank
 from logging import getLogger
+
+from text_lord.algorithms import textrank
 
 
 class MethodHandler:

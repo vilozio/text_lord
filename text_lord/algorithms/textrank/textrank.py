@@ -25,12 +25,12 @@ def textrank(text):
         Returns
         -------
         textrank : list
-            List of sorted tuples by pagerank for sentences
+            List of tuples sorted by pagerank for sentences.
             
             >>> [(number_of_sentence, pagerank, sentence), ...]
         
         G: graph
-            A NetworkX graph of sentences with weighted edges
+            A NetworkX graph of sentences with weighted edges.
     """
     sentences = sent_tokenize(text)
     # separate new lines as new sentences

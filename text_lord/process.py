@@ -18,6 +18,8 @@ def run(source_handler, target_handler, method_handler, args):
             if args.separate:
                 target_handler.target = target_relative_to_source(
                     source_handler.source, 'target')
+                filename = os.path.join(dirs[len(source_handler.source):],
+                                        filename)
             else:
                 target_handler.target = dirs
                 filename = filename + '.tr'

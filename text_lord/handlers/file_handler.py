@@ -1,6 +1,7 @@
-import handlers.bulk_text as btext
 import os
 from logging import getLogger
+
+from . import bulk_text as btext
 
 
 class FileHandler:

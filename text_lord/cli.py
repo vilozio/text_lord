@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Command line interface.
+"""Command line interface utils.
 """
 import argparse
 import os
