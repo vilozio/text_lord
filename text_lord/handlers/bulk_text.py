@@ -36,6 +36,7 @@ def load(dir_path):
     texts = {}
     for filename in get_files_path(dir_path):
         texts[filename] = read_file_text(filename)
+    logger.debug('Total texts count: {0}'.format(len(texts)))
     return texts
 
 

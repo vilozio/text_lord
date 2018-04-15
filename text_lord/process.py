@@ -4,27 +4,29 @@ import logging
 logger = logging.getLogger(__name__)
 
 
+# def run(source_handler, target_handler, method_handler, args):
+#     texts = source_handler.load()
+#     target = target_handler.target
+#     for path, text in texts.items():
+#         logger.debug('Extracting summary for {0}'.format(path))
+#         summary = method_handler.extract(text, 5)
+#         dirs, filename = os.path.split(path)
+#
+#         if args.tree:
+#             if args.separate:
+#                 target_handler.target = target_relative_to_source(
+#                     source_handler.source, 'target')
+#                 filename = os.path.join(dirs[len(source_handler.source):],
+#                                         filename)
+#             else:
+#                 target_handler.target = dirs
+#                 filename = filename + '.tr'
+#         target_handler.save(filename, summary)
+
+
 def run(source_handler, target_handler, method_handler, args):
-    texts = source_handler.load()
-    target = target_handler.target
-    for path, text in texts.items():
-        logger.debug('Extracting summary for {0}'.format(path))
-        summary = method_handler.extract(text, 1)
-        # break
-        # logger.debug('Result summary for {0}: {1}'.format(path, summary))
-        dirs, filename = os.path.split(path)
-
-        if args.tree:
-            if args.separate:
-                target_handler.target = target_relative_to_source(
-                    source_handler.source, 'target')
-                filename = os.path.join(dirs[len(source_handler.source):],
-                                        filename)
-            else:
-                target_handler.target = dirs
-                filename = filename + '.tr'
-        target_handler.save(filename, summary)
-
+    method_handler.set_state(source_handler, target_handler)
+    method_handler.extract()
 
 def target_relative_to_source(original_source, target):
     source = original_source

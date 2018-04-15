@@ -58,6 +58,8 @@ def parse_args():
                              'supported only')
     parser.add_argument('-t', '--textrank', action='store_true',
                         help='doing special')
+    parser.add_argument('-l', '--lexrank', action='store_true',
+                        help='doing special')
     parser.add_argument('-i', '--input', action=readable_dir,
                         help='input dir')
     parser.add_argument('-o', '--out', action=readable_dir,
